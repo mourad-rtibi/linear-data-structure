@@ -1,0 +1,83 @@
+//Problem 1, Solution 1 with an array:
+____________________________________
+var set1:INTEGER;
+var set2:INTEGER;
+var sum :INTEGER ;
+BEGIN 
+    sum = 0
+    for i in set1:
+        if i not in set2:
+            sum += i
+    for i in set2:
+        if i not in set1:
+            sum += i
+    return sum
+
+set1 = [3, 1, 7, 9]
+set2 = [2, 4, 1, 9, 3]
+print(find_distinct_sum(set1, set2)) # Output: 13
+END 
+//Problem 1, Solution 2 with a hash table:
+______________________________________
+BEGIN
+    sum = 0
+    elements_count = {}
+    for i in set1:
+        if i in elements_count:
+            elements_count[i] += 1
+        else:
+            elements_count[i] = 1
+    for i in set2:
+        if i in elements_count:
+            elements_count[i] += 1
+        else:
+            elements_count[i] = 1
+    for key, value in elements_count.items():
+        if value == 1:
+            sum += key
+    return sum
+
+set1 = [3, 1, 7, 9]
+set2 = [2, 4, 1, 9, 3]
+print(find_distinct_sum(set1, set2)) # Output: 13
+END
+
+//Problem 2, Solution 1 with an array:
+
+________________________________________________
+BEGIN
+    sum = 0
+    for i in set1:
+        if i in set2:
+            sum += i
+    return sum
+
+set1 = [12, 13, 6, 10]
+set2 = [13, 10, 16, 15]
+print(find_overlapping_sum(set1, set2)) # Output: 46
+END 
+//Problem 2, Solution 2 with a hash table:
+
+___________________________________________________
+BEGIN 
+    sum = 0
+    elements_count = {}
+    for i in set1:
+        if i in elements_count:
+            elements_count[i] += 1
+        else:
+            elements_count[i] = 1
+    for i in set2:
+        if i in elements_count:
+            elements_count[i] += 1
+        else:
+            elements_count[i] = 1
+    for key, value in elements_count.items():
+        if value > 1:
+            sum += key
+    return sum
+
+set1 = [12, 13, 6, 10]
+set2 = [13, 10, 16, 15]
+print(find_overlapping_sum(set1, set2)) # Output: 46
+END 
